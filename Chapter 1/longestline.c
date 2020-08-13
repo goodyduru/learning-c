@@ -31,18 +31,20 @@ int main() {
 	int len, is_long, current_index, i;
 	char line[MAXLINE];
 	char long_lines[NUM_LINES][MAXLINE];
+	char line_length[NUM_LINES];
 
 	is_long = 10;
 	current_index = 0;
 	while ((len = getline(line, MAXLINE)) > 0 ) {
 		if ( len > is_long && current_index < NUM_LINES) {
 	 		copy(line, long_lines[current_index]);
+			line_length[current_index] = len;
 			current_index++;
 		}
 	}
 	if ( current_index > 0 ) {
 		for( i = 0; i < current_index; i++ ) {
-			printf("%s", long_lines[i]);
+			printf("%d %s", line_length[i], long_lines[i]);
 		}
 	}
 }	
