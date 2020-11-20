@@ -8,7 +8,7 @@
  * will result in 0. This only requires 2 iteration which incidentally is the 
  * number of 1-bit in 101.
  */
-int bitcount(int x) {
+int bitcount(unsigned int x) {
 	int n = 0;
 	while (x != 0) {
 		x &= (x - 1);
