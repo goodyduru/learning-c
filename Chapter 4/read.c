@@ -16,3 +16,10 @@ void ungetch(char c) {
 		buf[bufp++] = c;
 	}
 }
+
+void ungets(char s[]) {
+	int i = 0;
+	while ( s[i] != '\0' ) {
+		ungetch(s[i++]);
+	}
+}
