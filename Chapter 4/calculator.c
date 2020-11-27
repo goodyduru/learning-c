@@ -8,10 +8,11 @@
 int getop(char []);
 void push(double);
 double pop();
+double get(int);
 
 int main() {
 	int type;
-	double op2;
+	double op2, op1;
 	char s[MAXOP];
 
 	while ((type = getop(s)) != EOF) {
@@ -47,6 +48,23 @@ int main() {
 					push(fmod(pop(), op2));
 				else
 					printf("error: zero divisor\n");
+			break;
+
+			case 'p':
+				printf("\t%.8g \t%.8g\n", get(1), get(2));
+			break;
+
+			case 'd':
+				op2 = get(2);
+				push(op2);
+				push(get(2));
+			break;
+
+			case '?':
+				op2 = pop();
+				op1 = pop();
+				push(op2);
+				push(op1);
 			break;
 
 			case '\n':

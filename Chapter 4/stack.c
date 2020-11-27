@@ -21,3 +21,14 @@ double pop() {
 		return 0.0;
 	}
 }
+
+double get(int i) {
+	if ( i <= sp ) {
+		return val[sp - i];
+	}
+	else {
+		printf("error: stack can't be reached \n");
+		return 0.0;
+	}
+}
+
