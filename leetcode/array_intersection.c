@@ -39,7 +39,7 @@ int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* return
     }
     finalArray = malloc(k*sizeof(int));
     for ( int i = 0; i < k; i++ ) {
-        *(finalArray + i) = *(returnArray + i);
+        finalArray[i] = returnArray[i];
     }
     return finalArray;
 }
