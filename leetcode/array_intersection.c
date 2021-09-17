@@ -10,6 +10,7 @@ int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* return
     int *outerArray = ( nums1Size <= nums2Size ) ? nums1 : nums2;
     int *innerArray = ( nums1Size > nums2Size ) ? nums1 : nums2;
     int *returnArray = malloc(*returnSize*sizeof(int));
+    int *finalArray;
     int value;
     int k = 0, valueCount = 0, keepTrack = 0;
     for (int i = 0; i < smallSize; i++) {
@@ -36,13 +37,17 @@ int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* return
         valueCount = 0;
         keepTrack = 0;
     }
-    return returnArray;
+    finalArray = malloc(k*sizeof(int));
+    for ( int i = 0; i < k; i++ ) {
+        *(finalArray + i) = *(returnArray + i);
+    }
+    return finalArray;
 }
 
 int main() {
     int first[2] = {1, 2};
     int second[2] = {1, 1};
-    int x = 2, i = 0;
+    int x = 1, i = 0;
     int* returnSize = &x;
     int* returnArray = intersect(first, 2, second, 2, returnSize);
     while ( i < x ) {
