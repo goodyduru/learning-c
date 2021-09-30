@@ -8,7 +8,6 @@ struct node {
     char *word;
     int count;
     struct node *next;
-    struct node *prev;
 };
 
 struct node* searchlist(struct node *item, char *s) {
@@ -31,20 +30,36 @@ struct node* min(struct node *item) {
     return item;
 }
 
-
-void reorder_list(struct node *item) {
+void swap(struct node *item, struct node *another_item) {
     char* temp_str;
     int temp_count;
-    while (item->next != NULL && item->count > item->next->count) {
-        temp_str = strdup(item->word);
-        temp_count = item->count;
-        item->word = strdup(item->next->word);
-        item->count = item->next->count;
-        item->next->word = strdup(temp_str);
-        item->next->count = temp_count;
-        item = item->next;
-        free(temp_str);
+    temp_str = strdup(item->word);
+    temp_count = item->count;
+    item->word = strdup(another_item->word);
+    item->count = another_item->count;
+    another_item->word = strdup(temp_str);
+    another_item->count = temp_count;
+    free(temp_str);
+}
+
+void bubble_sort(struct node *item) {
+    int swapped, i;
+    struct node *ptr;
+    struct node *last_ptr = NULL;
+
+    do {
+        swapped = 0;
+        ptr = item;
+        while ( ptr->next != last_ptr ) {
+            if ( ptr->count < ptr->next->count ) {
+                swap(ptr, ptr->next);
+                swapped = 1;
+            }
+            ptr = ptr->next;
+        }
+        last_ptr = ptr;
     }
+    while ( swapped );
 }
 
 struct node *additem(struct node *item, char *s) {
@@ -56,11 +71,9 @@ struct node *additem(struct node *item, char *s) {
         item->word = strdup(s);
         item->count = 1;
         item->next = NULL;
-        item->prev = NULL;
     }
     else if ( (n = searchlist(item, s)) != NULL ) {
         n->count++;
-        reorder_list(n);
     }
     else {
         n = min(item);
@@ -68,7 +81,6 @@ struct node *additem(struct node *item, char *s) {
         n->next->word = strdup(s);
         n->next->count = 1;
         n->next->next = NULL;
-        n->next->prev = n; 
     }
     return item;
 }
@@ -107,5 +119,6 @@ int main() {
     for ( int i = 0; i < 20; i++ ) {
         root = additem(root, words[i]);
     }
+    bubble_sort(root);
     printlist(root);
 }
