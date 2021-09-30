@@ -17,11 +17,14 @@ int main() {
     int *ip, *jp;
 
     ip = &x;
+    jp = ip;
     printf("ip is: %d\n", *ip);
+    printf("jp is: %d\n", *jp);
     y = *ip;
     printf("y is: %d\n", y);
     *ip = 0;
     printf("ip is: %d\n", *ip);
+    printf("jp is: %d\n", *jp);
     printf("x is: %d\n", x);
     printf("y is: %d\n", y);
     ip = &z[5];

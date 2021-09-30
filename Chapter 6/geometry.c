@@ -40,6 +40,12 @@ double area(struct rect my_rect) {
 }
 
 
+double area_ptr(struct rect *my_rect) {
+    double width = dist(my_rect->top_right, my_rect->top_left);
+    double height = dist(my_rect->top_right, my_rect->bottom_right);
+    return width * height;
+}
+
 int main() {
     struct point first_point = makepoint(20, 30);
     struct point second_point = makepoint(30, 30);
@@ -54,4 +60,13 @@ int main() {
     };
     struct rect fine_rect = makerect(rect_points);
     printf("Area of rectangle: %6.2f\n", area(fine_rect));
+
+    struct point arect_points[4] = {
+        makepoint(20, 50),
+        makepoint(60, 50),
+        makepoint(20, 10),
+        makepoint(60, 10)
+    };
+    struct rect another_rect = makerect(arect_points);
+    printf("Area of ptr rectange: %6.2f\n", area_ptr(&another_rect));
 }
