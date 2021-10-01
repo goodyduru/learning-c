@@ -23,7 +23,7 @@ unsigned hash(char *s) {
     return hashval % HASHSIZE;
 }
 
-struct nlist *lookup(char *s) {
+Nodeptr lookup(char *s) {
     Nodeptr np;
 
     for ( np = hashtable[hash(s)]; np != NULL; np = np->next ) {
@@ -33,7 +33,7 @@ struct nlist *lookup(char *s) {
     return NULL;
 }
 
-struct nlist *install(char *name, char *defn) {
+Nodeptr install(char *name, char *defn) {
     Nodeptr np;
     unsigned hashval;
 
@@ -55,7 +55,7 @@ struct nlist *install(char *name, char *defn) {
     return np;
 }
 
-struct nlist *lookupd(char *s) {
+Nodeptr lookupd(char *s) {
     Nodeptr np, prev;
 
     for ( np = hashtable[hash(s)]; np != NULL; prev = np, np = np->next ) {
