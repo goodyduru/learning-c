@@ -5,7 +5,7 @@ void minscanf(char *fmt, ...) {
     va_list ap;
     char *p, *sval;
     int *ival;
-    double *dval;
+    float *dval;
 
     va_start(ap, fmt);
     for ( p = fmt; *p; p++ ) {
@@ -21,7 +21,7 @@ void minscanf(char *fmt, ...) {
                 break;
             
             case 'f':
-                dval = va_arg(ap, double*);
+                dval = va_arg(ap, float*);
                 scanf("%f", dval);
                 break;
             
