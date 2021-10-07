@@ -20,7 +20,7 @@ char* diff(FILE *first, FILE *second) {
 
 int main(int argc, char* argv[]) {
     if ( argc < 3 ) {
-        fprintf(stderr, "Invalid number of argument: %d", argc);
+        fprintf(stderr, "Invalid number of argument: %d\n", argc);
         exit(1);
     }
 
