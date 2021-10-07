@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAXLINE 80
 
@@ -16,12 +17,14 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
     int count = 1;
-    char* filename;
+    char *filename, *filepath;
     while ( --argc > 0 ) {
         printf("Page Number: %d\n", count++);
-        filename = *++argv;
+        filepath = *++argv;
+        filename = strrchr(filepath, '/');
+        filename = filename ? filename + 1 : filepath;
         printf("Title: %s\n", filename);
-        filecopy(fopen(filename, "r"), stdout);
+        filecopy(fopen(filepath, "r"), stdout);
         printf("\n");
     }
 }
