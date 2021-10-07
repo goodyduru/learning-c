@@ -9,6 +9,7 @@ void filecopy(FILE *ifp, FILE *ofp) {
     while ( fgets(line, MAXLINE, ifp) != NULL ) {
         fputs(line, ofp);
     }
+    free(line);
 }
 
 int main(int argc, char* argv[]) {

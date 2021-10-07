@@ -12,6 +12,8 @@ char* diff(FILE *first, FILE *second) {
         if ( strcmp( line1, line2 ) != 0 ) {
             diff = (char *)malloc(sizeof(char)*(strlen(line1) + strlen(line2) + 10));
             sprintf(diff, "%s>>%s\n", line1, line2);
+            free(line1);
+            free(line2);
             return diff;
         }
     }
@@ -26,4 +28,5 @@ int main(int argc, char* argv[]) {
 
     char* diff_line = diff(fopen(argv[1], "r"), fopen(argv[2], "r"));
     printf("%s", diff_line);
+    free(diff_line);
 }
