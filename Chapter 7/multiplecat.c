@@ -13,6 +13,7 @@ void filecopy(FILE *ifp, FILE *ofp) {
 int main(int argc, char* argv[]) {
     if ( argc < 2 ) {
         fprintf(stderr, "Invalid number of arguments: %d\n", argc);
+        exit(1);
     }
     int count = 1;
     char* filename;
